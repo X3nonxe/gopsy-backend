@@ -1,0 +1,76 @@
+# docker-compose.yml
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: gopsy-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - '${DB_PORT}:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${DB_USER} -d ${DB_NAME}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - gopsy-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: gopsy-redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - gopsy-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gopsy-app
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT}
+      - APP_PORT=${APP_PORT}
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+      - DB_SSL_MODE=disable
+      - DB_TIMEZONE=${DB_TIMEZONE}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - JWT_EXPIRATION_IN_HOURS=${JWT_EXPIRATION_IN_HOURS}
+    volumes:
+      - .:/app
+      - /app/vendor
+    networks:
+      - gopsy-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  gopsy-network:
+    driver: bridge

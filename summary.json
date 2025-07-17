@@ -1,0 +1,376 @@
+{
+  "state": {
+    "isStdOutTTY": true,
+    "isStdErrTTY": true,
+    "testRunDurationMs": 22174.5573
+  },
+  "metrics": {
+    "group_duration{group:::Admin registers psychologist}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 93.92765999999999,
+        "avg": 73.70094444444445,
+        "min": 66.2575,
+        "med": 70.1648,
+        "max": 104.9272,
+        "p(90)": 89.08522
+      },
+      "thresholds": {
+        "p(95) < 500": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{expected_response:true}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 51.24317195121951,
+        "min": 9.5311,
+        "med": 63.2864,
+        "max": 113.6991,
+        "p(90)": 75.91106000000002,
+        "p(95)": 90.60654000000002
+      }
+    },
+    "vus": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 1,
+        "min": 1,
+        "max": 5
+      }
+    },
+    "http_req_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 51.24317195121951,
+        "min": 9.5311,
+        "med": 63.2864,
+        "max": 113.6991,
+        "p(90)": 75.91106000000002,
+        "p(95)": 90.60654000000002
+      },
+      "thresholds": {
+        "p(95)<800": {
+          "ok": true
+        }
+      }
+    },
+    "login_errors": {
+      "thresholds": {
+        "count<5": {
+          "ok": true
+        }
+      },
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 0,
+        "rate": 0
+      }
+    },
+    "http_req_sending": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 1.6763,
+        "p(90)": 0,
+        "p(95)": 0,
+        "avg": 0.04430365853658536,
+        "min": 0,
+        "med": 0
+      }
+    },
+    "http_reqs": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 82,
+        "rate": 3.6979317733662262
+      }
+    },
+    "http_req_failed": {
+      "thresholds": {
+        "rate<0.01": {
+          "ok": true
+        }
+      },
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 82
+      }
+    },
+    "http_req_tls_handshaking": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "min": 0,
+        "med": 0,
+        "max": 0,
+        "p(90)": 0,
+        "p(95)": 0,
+        "avg": 0
+      }
+    },
+    "group_duration{group:::Psychologist sets availability}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 39.1233,
+        "p(90)": 16.669100000000004,
+        "p(95)": 19.190929999999998,
+        "avg": 13.594948148148147,
+        "min": 9.9018,
+        "med": 11.9792
+      },
+      "thresholds": {
+        "p(95) < 500": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_blocked": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 0.51262,
+        "avg": 0.1342987804878049,
+        "min": 0,
+        "med": 0,
+        "max": 7.2034,
+        "p(90)": 0
+      }
+    },
+    "successful_complete_flows": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 27,
+        "rate": 1.2176116814742453
+      },
+      "thresholds": {
+        "count>0": {
+          "ok": true
+        }
+      }
+    },
+    "data_sent": {
+      "contains": "data",
+      "values": {
+        "count": 31644,
+        "rate": 1427.0408906878154
+      },
+      "type": "counter"
+    },
+    "checks": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 1,
+        "passes": 189,
+        "fails": 0
+      }
+    },
+    "iteration_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "min": 3139.7757,
+        "med": 3147.072,
+        "max": 3195.4677,
+        "p(90)": 3174.63296,
+        "p(95)": 3191.67539,
+        "avg": 3153.9985185185187
+      }
+    },
+    "iterations": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 27,
+        "rate": 1.2176116814742453
+      }
+    },
+    "registration_errors": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 0,
+        "rate": 0
+      },
+      "thresholds": {
+        "count<5": {
+          "ok": true
+        }
+      }
+    },
+    "group_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 51.018264197530854,
+        "min": 9.9018,
+        "med": 63.2149,
+        "max": 113.6991,
+        "p(90)": 71.9723,
+        "p(95)": 87.2797
+      }
+    },
+    "vus_max": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 5,
+        "min": 5,
+        "max": 5
+      }
+    },
+    "http_req_waiting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 75.91106000000002,
+        "p(95)": 89.86791500000001,
+        "avg": 50.91577682926829,
+        "min": 9.5311,
+        "med": 63.2006,
+        "max": 113.4737
+      }
+    },
+    "http_req_receiving": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 1.4557,
+        "p(90)": 0.7789400000000005,
+        "p(95)": 0.9537050000000004,
+        "avg": 0.28309146341463415,
+        "min": 0,
+        "med": 0.0827
+      }
+    },
+    "data_received": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "count": 64076,
+        "rate": 2889.6180037831014
+      }
+    },
+    "http_req_connecting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "min": 0,
+        "med": 0,
+        "max": 0.9432,
+        "p(90)": 0,
+        "p(95)": 0.51262,
+        "avg": 0.04751829268292683
+      }
+    }
+  },
+  "setup_data": {
+    "adminToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTI4MDgzNjEsImlhdCI6MTc1MjcyMTk2MSwicm9sZSI6ImFkbWluIiwidXNlcl9pZCI6MjM5fQ.uOlyngB2elDXXfegGqehdMZW5PVP9RSZ6Po_HtjX29g"
+  },
+  "root_group": {
+    "groups": [
+      {
+        "name": "Admin registers psychologist",
+        "path": "::Admin registers psychologist",
+        "id": "54b4bd03ccda732d5f52b3cfddebab32",
+        "groups": [],
+        "checks": [
+            {
+              "name": "Psychologist registered successfully",
+              "path": "::Admin registers psychologist::Psychologist registered successfully",
+              "id": "17a04c0f4b93e3b39c2de99e4373b675",
+              "passes": 27,
+              "fails": 0
+            },
+            {
+              "path": "::Admin registers psychologist::Registration response has success flag",
+              "id": "5f36bc25e539f64bc88a1890aafba8bd",
+              "passes": 27,
+              "fails": 0,
+              "name": "Registration response has success flag"
+            },
+            {
+              "path": "::Admin registers psychologist::Registration response has user data",
+              "id": "b3971ffc4223a8c2b8eedf6384aaa064",
+              "passes": 27,
+              "fails": 0,
+              "name": "Registration response has user data"
+            }
+          ]
+      },
+      {
+        "name": "Psychologist login",
+        "path": "::Psychologist login",
+        "id": "17b59f48873bb3e111fb09bbeba0667f",
+        "groups": [],
+        "checks": [
+            {
+              "path": "::Psychologist login::Psychologist login successful",
+              "id": "fe6a2bb0a611b0a7adee305df5d2aec0",
+              "passes": 27,
+              "fails": 0,
+              "name": "Psychologist login successful"
+            },
+            {
+              "name": "Login response has token",
+              "path": "::Psychologist login::Login response has token",
+              "id": "4228e2db92ed5af4f838fe5a5e2a5a29",
+              "passes": 27,
+              "fails": 0
+            }
+          ]
+      },
+      {
+        "checks": [
+          {
+            "passes": 27,
+            "fails": 0,
+            "name": "Availability set successfully",
+            "path": "::Psychologist sets availability::Availability set successfully",
+            "id": "346fc8a8a8fb958f7d2098405f690722"
+          },
+          {
+            "name": "Availability response structure",
+            "path": "::Psychologist sets availability::Availability response structure",
+            "id": "ba9fcd8d48af7ca2cf3a37f5a135ed9a",
+            "passes": 27,
+            "fails": 0
+          }
+        ],
+        "name": "Psychologist sets availability",
+        "path": "::Psychologist sets availability",
+        "id": "4ec1ffdf34f89f26442bd3f057a62ca2",
+        "groups": []
+      }
+    ],
+    "checks": [],
+    "name": "",
+    "path": "",
+    "id": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "options": {
+    "summaryTrendStats": [
+      "avg",
+      "min",
+      "med",
+      "max",
+      "p(90)",
+      "p(95)"
+    ],
+    "summaryTimeUnit": "",
+    "noColor": false
+  }
+}
