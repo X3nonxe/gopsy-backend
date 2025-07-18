@@ -9,6 +9,7 @@ import (
 	"github.com/X3nonxe/gopsy-backend/internal/usecase"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+	"go.uber.org/zap"
 )
 
 func TestAvailabilityUsecase_SetAvailability(t *testing.T) {
@@ -17,7 +18,7 @@ func TestAvailabilityUsecase_SetAvailability(t *testing.T) {
 	defer mockCtrl.Finish()
 
 	mockAvailabilityRepo := mocks.NewMockAvailabilityRepository(mockCtrl)
-	availabilityUsecase := usecase.NewAvailabilityUsecase(mockAvailabilityRepo)
+	availabilityUsecase := usecase.NewAvailabilityUsecase(mockAvailabilityRepo, zap.NewNop()) // Logger bisa diisi sesuai kebutuhan
 
 	ctx := context.Background()
 	psikologID := uint(1)

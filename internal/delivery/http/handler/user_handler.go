@@ -7,29 +7,34 @@ import (
 	"github.com/X3nonxe/gopsy-backend/internal/domain"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
+	"go.uber.org/zap"
 )
 
 type UserHandler struct {
 	userUsecase domain.UserUsecase
 	validator   *validator.Validate
+	logger      *zap.Logger
 }
 
-func NewUserHandler(uu domain.UserUsecase, v *validator.Validate) *UserHandler {
+func NewUserHandler(uu domain.UserUsecase, v *validator.Validate, logger *zap.Logger) *UserHandler {
 	return &UserHandler{
 		userUsecase: uu,
 		validator:   v,
+		logger:      logger,
 	}
 }
 
 func (h *UserHandler) Register(c *gin.Context) {
 	var payload domain.RegisterPayload
 	if err := c.ShouldBindJSON(&payload); err != nil {
+		h.logger.Warn("Invalid request payload", zap.Error(err))
 		response.Error(c, http.StatusBadRequest, "Invalid request payload", err)
 		return
 	}
 
 	// Validate payload
 	if err := h.validator.Struct(payload); err != nil {
+		h.logger.Warn("Validation failed", zap.Error(err))
 		response.Error(c, http.StatusBadRequest, "Validation failed", err)
 		return
 	}
@@ -37,12 +42,14 @@ func (h *UserHandler) Register(c *gin.Context) {
 	user, err := h.userUsecase.Register(c.Request.Context(), &payload)
 	if err != nil {
 		statusCode := h.getStatusCodeFromError(err)
+		h.logger.Error("Registration failed", zap.Error(err), zap.Int("statusCode", statusCode))
 		response.Error(c, statusCode, "Registration failed", err)
 		return
 	}
 
 	// Remove password from response
 	userResponse := h.sanitizeUserResponse(user)
+	h.logger.Info("User registered successfully", zap.Uint("userID", user.ID))
 	response.Success(c, http.StatusCreated, "User registered successfully", userResponse)
 }
 

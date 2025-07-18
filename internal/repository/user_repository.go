@@ -6,15 +6,17 @@ import (
 	"strings"
 
 	"github.com/X3nonxe/gopsy-backend/internal/domain"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
 type userRepository struct {
-	db *gorm.DB
+	db     *gorm.DB
+	logger *zap.Logger
 }
 
-func NewUserRepository(db *gorm.DB) domain.UserRepository {
-	return &userRepository{db: db}
+func NewUserRepository(db *gorm.DB, logger *zap.Logger) domain.UserRepository {
+	return &userRepository{db: db, logger: logger}
 }
 
 func (r *userRepository) Create(ctx context.Context, user *domain.User) error {

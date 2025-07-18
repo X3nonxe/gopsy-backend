@@ -10,6 +10,7 @@ import (
 	"github.com/X3nonxe/gopsy-backend/internal/usecase"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+	"go.uber.org/zap"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -18,7 +19,8 @@ func TestUserUsecase_Register(t *testing.T) {
 	defer mockCtrl.Finish()
 
 	mockUserRepo := mocks.NewMockUserRepository(mockCtrl)
-	userUsecase := usecase.NewUserUsecase(mockUserRepo, "test-secret", 3600)
+	logger := zap.NewNop()
+	userUsecase := usecase.NewUserUsecase(mockUserRepo, "test-secret", 3600, logger)
 
 	payload := &domain.RegisterPayload{
 		Username: "testuser",
@@ -117,7 +119,7 @@ func TestUserUsecase_Login(t *testing.T) {
 	defer mockCtrl.Finish()
 
 	mockUserRepo := mocks.NewMockUserRepository(mockCtrl)
-	userUsecase := usecase.NewUserUsecase(mockUserRepo, "test-secret", 3600)
+	userUsecase := usecase.NewUserUsecase(mockUserRepo, "test-secret", 3600, zap.NewNop())
 
 	password := "password123"
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)

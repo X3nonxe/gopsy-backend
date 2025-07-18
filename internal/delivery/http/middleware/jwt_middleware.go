@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"context"
 	"fmt"
 	"log/slog"
 	"net/http"
@@ -238,5 +239,40 @@ func RoleAuthMiddleware(requiredRoles ...string) gin.HandlerFunc {
 		}
 
 		c.Next()
+	}
+}
+
+func Security() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// Set security headers
+		c.Header("X-Content-Type-Options", "nosniff")
+		c.Header("X-Frame-Options", "DENY")
+		c.Header("X-XSS-Protection", "1; mode=block")
+		c.Header("Content-Security-Policy", "default-src 'self'")
+
+		c.Next()
+	}
+}
+
+func Timeout(timeout time.Duration) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx, cancel := context.WithTimeout(c.Request.Context(), timeout)
+		defer cancel()
+
+		c.Request = c.Request.WithContext(ctx)
+
+		done := make(chan struct{})
+		go func() {
+			c.Next()
+			close(done)
+		}()
+
+		select {
+		case <-done:
+			return
+		case <-ctx.Done():
+			c.AbortWithStatusJSON(http.StatusGatewayTimeout, gin.H{"error": "Request timed out"})
+			return
+		}
 	}
 }

@@ -8,6 +8,7 @@ import (
 
 	"github.com/X3nonxe/gopsy-backend/internal/domain"
 	"github.com/golang-jwt/jwt/v5"
+	"go.uber.org/zap"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -15,13 +16,15 @@ type userUsecase struct {
 	userRepo           domain.UserRepository
 	jwtSecret          string
 	jwtExpirationHours int
+	logger             *zap.Logger
 }
 
-func NewUserUsecase(ur domain.UserRepository, jwtSecret string, jwtExpirationHours int) domain.UserUsecase {
+func NewUserUsecase(ur domain.UserRepository, jwtSecret string, jwtExpirationHours int, logger *zap.Logger) domain.UserUsecase {
 	return &userUsecase{
 		userRepo:           ur,
 		jwtSecret:          jwtSecret,
 		jwtExpirationHours: jwtExpirationHours,
+		logger:             logger,
 	}
 }
 

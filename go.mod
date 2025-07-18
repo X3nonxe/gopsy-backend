@@ -30,6 +30,7 @@ require (
 	go.opentelemetry.io/otel/sdk v1.26.0
 	go.opentelemetry.io/otel/sdk/metric v1.26.0
 	go.opentelemetry.io/otel/trace v1.26.0
+	go.uber.org/zap v1.21.0
 	golang.org/x/crypto v0.31.0
 	golang.org/x/time v0.5.0
 	gorm.io/driver/postgres v1.6.0

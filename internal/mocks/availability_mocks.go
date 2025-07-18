@@ -18,6 +18,16 @@ type MockAvailabilityRepository struct {
 	recorder *MockAvailabilityRepositoryMockRecorder
 }
 
+// GetByPsikologID implements domain.AvailabilityRepository.
+func (m *MockAvailabilityRepository) GetByPsikologID(ctx context.Context, psikologID uint) ([]domain.WaktuKonsultasi, error) {
+	panic("unimplemented")
+}
+
+// GetByPsikologIDAndDay implements domain.AvailabilityRepository.
+func (m *MockAvailabilityRepository) GetByPsikologIDAndDay(ctx context.Context, psikologID uint, day string) ([]domain.WaktuKonsultasi, error) {
+	panic("unimplemented")
+}
+
 // MockAvailabilityRepositoryMockRecorder is the mock recorder for MockAvailabilityRepository.
 type MockAvailabilityRepositoryMockRecorder struct {
 	mock *MockAvailabilityRepository
